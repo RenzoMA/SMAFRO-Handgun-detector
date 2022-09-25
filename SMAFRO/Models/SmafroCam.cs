@@ -14,6 +14,15 @@ using static System.Windows.Forms.Control;
 
 namespace SMAFRO.Models
 {
+    public class CameraAddedEventArgs : EventArgs
+    {
+        public string DeviceName { get; private set; }
+
+        public CameraAddedEventArgs( string deviceName)
+        {
+            DeviceName = deviceName;
+        }
+    }
     public class NextFrameEventArgs : EventArgs
     {
         public string DeviceName { get; private set; }

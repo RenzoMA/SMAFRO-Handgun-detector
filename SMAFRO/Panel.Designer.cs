@@ -28,21 +28,30 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
+            this.miniViewContainer = new System.Windows.Forms.GroupBox();
             this.flowLayoutPanel2 = new System.Windows.Forms.FlowLayoutPanel();
+            this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.mainVideoPanel = new System.Windows.Forms.FlowLayoutPanel();
+            this.tabControl1 = new System.Windows.Forms.TabControl();
+            this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.miniViewContainer.SuspendLayout();
+            this.groupBox2.SuspendLayout();
+            this.tabControl1.SuspendLayout();
+            this.tabPage1.SuspendLayout();
             this.SuspendLayout();
             // 
-            // flowLayoutPanel1
+            // miniViewContainer
             // 
-            this.flowLayoutPanel1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
+            this.miniViewContainer.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.flowLayoutPanel1.AutoScroll = true;
-            this.flowLayoutPanel1.BackColor = System.Drawing.Color.Gray;
-            this.flowLayoutPanel1.Location = new System.Drawing.Point(12, 55);
-            this.flowLayoutPanel1.Name = "flowLayoutPanel1";
-            this.flowLayoutPanel1.Size = new System.Drawing.Size(1100, 662);
-            this.flowLayoutPanel1.TabIndex = 0;
+            this.miniViewContainer.Controls.Add(this.flowLayoutPanel2);
+            this.miniViewContainer.Location = new System.Drawing.Point(1112, 6);
+            this.miniViewContainer.Name = "miniViewContainer";
+            this.miniViewContainer.Size = new System.Drawing.Size(217, 971);
+            this.miniViewContainer.TabIndex = 0;
+            this.miniViewContainer.TabStop = false;
+            this.miniViewContainer.Text = "Mini View";
             // 
             // flowLayoutPanel2
             // 
@@ -50,10 +59,62 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.flowLayoutPanel2.AutoScroll = true;
             this.flowLayoutPanel2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            this.flowLayoutPanel2.Location = new System.Drawing.Point(1121, 55);
+            this.flowLayoutPanel2.Location = new System.Drawing.Point(6, 22);
             this.flowLayoutPanel2.Name = "flowLayoutPanel2";
-            this.flowLayoutPanel2.Size = new System.Drawing.Size(217, 662);
+            this.flowLayoutPanel2.Size = new System.Drawing.Size(205, 943);
             this.flowLayoutPanel2.TabIndex = 1;
+            // 
+            // groupBox2
+            // 
+            this.groupBox2.Controls.Add(this.mainVideoPanel);
+            this.groupBox2.Location = new System.Drawing.Point(6, 6);
+            this.groupBox2.Name = "groupBox2";
+            this.groupBox2.Size = new System.Drawing.Size(1100, 665);
+            this.groupBox2.TabIndex = 1;
+            this.groupBox2.TabStop = false;
+            this.groupBox2.Text = "Panel principal camaras";
+            // 
+            // mainVideoPanel
+            // 
+            this.mainVideoPanel.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.mainVideoPanel.AutoScroll = true;
+            this.mainVideoPanel.BackColor = System.Drawing.Color.Gray;
+            this.mainVideoPanel.Location = new System.Drawing.Point(12, 22);
+            this.mainVideoPanel.Name = "mainVideoPanel";
+            this.mainVideoPanel.Size = new System.Drawing.Size(1082, 637);
+            this.mainVideoPanel.TabIndex = 1;
+            // 
+            // tabControl1
+            // 
+            this.tabControl1.Controls.Add(this.tabPage1);
+            this.tabControl1.Controls.Add(this.tabPage2);
+            this.tabControl1.Location = new System.Drawing.Point(12, 12);
+            this.tabControl1.Name = "tabControl1";
+            this.tabControl1.SelectedIndex = 0;
+            this.tabControl1.Size = new System.Drawing.Size(1326, 705);
+            this.tabControl1.TabIndex = 2;
+            // 
+            // tabPage1
+            // 
+            this.tabPage1.Controls.Add(this.groupBox2);
+            this.tabPage1.Controls.Add(this.miniViewContainer);
+            this.tabPage1.Location = new System.Drawing.Point(4, 24);
+            this.tabPage1.Name = "tabPage1";
+            this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage1.Size = new System.Drawing.Size(1318, 677);
+            this.tabPage1.TabIndex = 0;
+            this.tabPage1.Text = "Panel principal camaras";
+            this.tabPage1.UseVisualStyleBackColor = true;
+            // 
+            // tabPage2
+            // 
+            this.tabPage2.Location = new System.Drawing.Point(4, 24);
+            this.tabPage2.Name = "tabPage2";
+            this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage2.Size = new System.Drawing.Size(192, 72);
+            this.tabPage2.TabIndex = 1;
+            this.tabPage2.Text = "Gestion camaras activas";
+            this.tabPage2.UseVisualStyleBackColor = true;
             // 
             // Panel
             // 
@@ -62,18 +123,25 @@
             this.AutoScroll = true;
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(1350, 729);
-            this.Controls.Add(this.flowLayoutPanel2);
-            this.Controls.Add(this.flowLayoutPanel1);
+            this.Controls.Add(this.tabControl1);
             this.Name = "Panel";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "SMAFRO";
+            this.miniViewContainer.ResumeLayout(false);
+            this.groupBox2.ResumeLayout(false);
+            this.tabControl1.ResumeLayout(false);
+            this.tabPage1.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
 
         #endregion
-
-        private FlowLayoutPanel flowLayoutPanel1;
+        private GroupBox miniViewContainer;
         private FlowLayoutPanel flowLayoutPanel2;
+        private GroupBox groupBox2;
+        private FlowLayoutPanel mainVideoPanel;
+        private TabControl tabControl1;
+        private TabPage tabPage1;
+        private TabPage tabPage2;
     }
 }

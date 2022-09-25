@@ -6,6 +6,7 @@ using System.Diagnostics;
 using AForge.Video.DirectShow;
 using AForge.Video;
 using SMAFRO.Models;
+using SMAFRO.Controllers;
 
 namespace SMAFRO
 {
@@ -16,10 +17,12 @@ namespace SMAFRO
         public Panel()
         {
             InitializeComponent();
-            setupCameras();
+            var cameraController = new CameraController();
+            cameraController.OnNextFrame += new CameraController.NextFrameUpdateHandler((sender, e) => updateFrame(e.DeviceName, e.Frame));
+            cameraController.OnCameraAdded += new CameraController.CameraAddedHandler((sender, e) => test(e.DeviceName));
+            cameraController.loadSystemCameras();
             setupCamClick();
-
-            this.setCameraDimensions(2);
+            setCameraDimensions(2);
         }
         public void setupCamClick() {
             foreach (var entry in camDictionary) {
@@ -41,10 +44,15 @@ namespace SMAFRO
             }
             
         }
+
+        public void test(string cameraId) {
+            var control = AddCameraControl(cameraId);
+            camDictionary.Add(cameraId, control);
+        }
         public void zoomOut() {
             this.clearPanels();
             var cams = this.camDictionary.ToList().Select(cam => cam.Value).ToArray();
-            this.flowLayoutPanel1.Controls.AddRange(cams);
+            this.mainVideoPanel.Controls.AddRange(cams);
             this.setCameraDimensions(2);
         }
 
@@ -53,14 +61,14 @@ namespace SMAFRO
             var rest = camDictionary.ToList().Where(cam => cam.Value != pictureBox).Select(cam => cam.Value).ToArray();
 
             this.clearPanels();
-            this.flowLayoutPanel1.Controls.Add(pictureBox);
+            this.mainVideoPanel.Controls.Add(pictureBox);
             addToMainView(new PictureBox[] { pictureBox});
             setCameraDimensions(1);
             addToMiniView(rest);
         }
 
         private void addToMainView(PictureBox[] cams) {
-            this.flowLayoutPanel1.Controls.AddRange(cams);
+            this.mainVideoPanel.Controls.AddRange(cams);
         }
 
         private void addToMiniView(PictureBox[] cams) {
@@ -73,39 +81,11 @@ namespace SMAFRO
 
         public void clearPanels() {
             this.flowLayoutPanel2.Controls.Clear();
-            this.flowLayoutPanel1.Controls.Clear();
+            this.mainVideoPanel.Controls.Clear();
         }
 
-        public void setupCameras() {
-            var filterInfoCollection = new FilterInfoCollection(FilterCategory.VideoInputDevice);
-            for (var i = 0; i < filterInfoCollection.Count; i++)
-            {
-                FilterInfo Device = filterInfoCollection[i];
-                var cameraId = filterInfoCollection[i].MonikerString;
-                loadCamera(cameraId, Device.Name);
-            }
-        }
-
-        private void loadCamera(string cameraId, string deviceName)
-        {
-            var picture = AddCameraControl(deviceName);
-            startCamera(cameraId, deviceName);
-            camDictionary.Add(deviceName, picture);
-        }
-
-        private void startCamera(string cameraId, string deviceName)
-        {
-            var smafroCam = new SmafroCam
-            {
-                VideoCaptureDevice = new VideoCaptureDevice(cameraId),
-                DeviceName = deviceName
-            };
-            smafroCam.setupCamera();
-            smafroCam.OnNextFrame += new SmafroCam.NextFrameUpdateHandler((sender, e) => updateFrame(e.DeviceName, e.Frame));
-        }
-
-        private void updateFrame(string cameraName, Bitmap frame) {
-            var pictureBox = camDictionary.GetValueOrDefault(cameraName);
+        private void updateFrame(string cameraId, Bitmap frame) {
+            var pictureBox = camDictionary.GetValueOrDefault(cameraId);
             pictureBox.Image = frame;
         }
 
@@ -123,15 +103,15 @@ namespace SMAFRO
                 AutoSize = true
             };
             picture.Controls.Add(title);
-            this.flowLayoutPanel1.Controls.Add(picture);
+            this.mainVideoPanel.Controls.Add(picture);
             return picture;
         }
 
         private void setCameraDimensions(int camPerRow) {
-            foreach (var control in this.flowLayoutPanel1.Controls) {
+            foreach (var control in this.mainVideoPanel.Controls) {
                 if (control is PictureBox) {
                     var pictureBox = control as PictureBox;
-                    pictureBox.Width = (this.flowLayoutPanel1.Width / camPerRow) - 10;
+                    pictureBox.Width = (this.mainVideoPanel.Width / camPerRow) - 10;
                     pictureBox.Height = pictureBox.Width / 2;
                 }
             }
