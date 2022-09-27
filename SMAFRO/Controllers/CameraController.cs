@@ -10,7 +10,7 @@ namespace SMAFRO.Controllers
 {
     public class CameraController
     {
-        public HashSet<string> cameras = new HashSet<string>();
+        public HashSet<SmafroCam> cameras = new HashSet<SmafroCam>();
         public delegate void NextFrameUpdateHandler(object sender, NextFrameEventArgs e);
 
         public event NextFrameUpdateHandler OnNextFrame;
@@ -36,7 +36,6 @@ namespace SMAFRO.Controllers
 
         private void loadCamera(string cameraId, string deviceName)
         {
-            this.cameras.Add(cameraId);
             startCamera(cameraId, deviceName);
         }
 
@@ -49,6 +48,12 @@ namespace SMAFRO.Controllers
             };
             smafroCam.setupCamera();
             smafroCam.OnNextFrame += new SmafroCam.NextFrameUpdateHandler((sender, e) => updateFrame(e.DeviceName, e.Frame));
+            this.cameras.Add(smafroCam);
+        }
+
+        public void switchCameraMode(string cameraName, bool scoped) {
+            var cam = this.cameras.First((cam) => cam.DeviceName == cameraName);
+            cam?.switchMode(scoped);
         }
 
         private void updateFrame(string deviceId, Bitmap frame)

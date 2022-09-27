@@ -41,18 +41,45 @@ namespace SMAFRO.Models
         public event NextFrameUpdateHandler OnNextFrame;
         public VideoCaptureDevice VideoCaptureDevice { get; set; }
         public string DeviceName { get; set; }
+        public bool Scoped { get; set; }
+
+        public NewFrameEventHandler handler;
 
         private HandgunDetector HandgunDetector = new HandgunDetector(75, new MCvScalar(255, 0, 0), new MCvScalar(0, 0, 255));
-
+        public SmafroCam() { 
+            handler = new NewFrameEventHandler((sender, e) => NewScopedFrameEvent(sender, e, this.DeviceName));
+        }
         public void setupCamera() {
 
-            VideoCaptureDevice.NewFrame += new NewFrameEventHandler((sender, e) => NewFrameEvent(sender, e, DeviceName));
+            VideoCaptureDevice.NewFrame += handler;
             VideoCaptureDevice.Start();
+        }
+
+        public void switchMode(bool scoped) {
+            this.Scoped = scoped;
+            if (this.Scoped)
+            {
+                VideoCaptureDevice.NewFrame -= handler;
+                handler = new NewFrameEventHandler((sender, e) => NewScopedFrameEvent(sender, e, DeviceName));
+                VideoCaptureDevice.NewFrame += handler;
+            }
+            else {
+                VideoCaptureDevice.NewFrame -= handler;
+                handler = new NewFrameEventHandler((sender, e) => NewFrameEvent(sender, e, DeviceName));
+                VideoCaptureDevice.NewFrame += handler;
+            }
+        }
+
+        private void NewScopedFrameEvent(object sender, NewFrameEventArgs eventArgs, string deviceName)
+        {
+            var nextFrame = HandgunDetector.Predict((Bitmap)eventArgs.Frame.Clone());
+            NextFrameEventArgs args = new NextFrameEventArgs(deviceName, nextFrame);
+            OnNextFrame(this, args);
         }
 
         private void NewFrameEvent(object sender, NewFrameEventArgs eventArgs, string deviceName)
         {
-            var nextFrame = HandgunDetector.Predict((Bitmap)eventArgs.Frame.Clone());
+            var nextFrame = HandgunDetector.Predict((Bitmap)eventArgs.Frame.Clone(), false);
             NextFrameEventArgs args = new NextFrameEventArgs(deviceName, nextFrame);
             OnNextFrame(this, args);
         }

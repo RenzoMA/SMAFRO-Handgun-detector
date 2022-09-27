@@ -14,15 +14,16 @@ namespace SMAFRO
     {
         Dictionary<string, PictureBox> camDictionary = new Dictionary<string, PictureBox>();
         public string currentCamera = "";
+        CameraController cameraController;
         public Panel()
         {
             InitializeComponent();
-            var cameraController = new CameraController();
+            cameraController = new CameraController();
             cameraController.OnNextFrame += new CameraController.NextFrameUpdateHandler((sender, e) => updateFrame(e.DeviceName, e.Frame));
             cameraController.OnCameraAdded += new CameraController.CameraAddedHandler((sender, e) => test(e.DeviceName));
             cameraController.loadSystemCameras();
             setupCamClick();
-            setCameraDimensions(2);
+            setCameraDimensions(4);
         }
         public void setupCamClick() {
             foreach (var entry in camDictionary) {
@@ -41,6 +42,7 @@ namespace SMAFRO
             else {
                 zoomIn(deviceName);
                 this.currentCamera = deviceName;
+                this.cameraController.switchCameraMode(this.currentCamera, true);
             }
             
         }
@@ -52,6 +54,8 @@ namespace SMAFRO
         public void zoomOut() {
             this.clearPanels();
             var cams = this.camDictionary.ToList().Select(cam => cam.Value).ToArray();
+            cameraController.cameras.ToList().ForEach(camera =>
+            camera.switchMode(true));
             this.mainVideoPanel.Controls.AddRange(cams);
             this.setCameraDimensions(2);
         }
@@ -59,7 +63,8 @@ namespace SMAFRO
         public void zoomIn(string deviceName) {
             var pictureBox = camDictionary.GetValueOrDefault(deviceName);
             var rest = camDictionary.ToList().Where(cam => cam.Value != pictureBox).Select(cam => cam.Value).ToArray();
-
+            cameraController.cameras.Where(cam => cam.DeviceName != deviceName).ToList().ForEach(camera => 
+            camera.switchMode(false));
             this.clearPanels();
             this.mainVideoPanel.Controls.Add(pictureBox);
             addToMainView(new PictureBox[] { pictureBox});
