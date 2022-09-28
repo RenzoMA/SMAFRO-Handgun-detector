@@ -17,3 +17,9 @@ This is a demo on the model running on a laptop with: CPU - Intel Core i7 7700HQ
 Performance on a 416x416 resolution:
 * Frame processing time + Post Processing: <b>56-59ms</b> on average.
 * Frames Per Second: <b>17-18 FPS</b>.
+
+# Project Setup
+1. Place the file named "yolov4-custom_best.weights" in the following roots:
+  * SMAFRO-Handgun-detector\SMAFRO\NetworkModels
+  * D:\UPC\SMAFRO-Handgun-detector\Darknet-Yolov4-EmguCV\NetworkModels
+2. Set SMAFRO as startup project
