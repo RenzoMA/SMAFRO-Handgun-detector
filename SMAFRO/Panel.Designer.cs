@@ -146,7 +146,7 @@
             // 
             // flpGestionCamaras
             // 
-            this.flpGestionCamaras.BackColor = System.Drawing.Color.Gray;
+            this.flpGestionCamaras.BackColor = System.Drawing.Color.WhiteSmoke;
             this.flpGestionCamaras.Location = new System.Drawing.Point(6, 22);
             this.flpGestionCamaras.Name = "flpGestionCamaras";
             this.flpGestionCamaras.Size = new System.Drawing.Size(1294, 549);
