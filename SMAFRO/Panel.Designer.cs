@@ -36,8 +36,9 @@
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.flpGestionCamaras = new System.Windows.Forms.FlowLayoutPanel();
             this.btnGuardarCamarasActivas = new System.Windows.Forms.Button();
+            this.flpGestionCamaras = new System.Windows.Forms.FlowLayoutPanel();
+            this.btnCerrarSesion = new System.Windows.Forms.Button();
             this.miniViewContainer.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.tabControl1.SuspendLayout();
@@ -93,7 +94,7 @@
             // 
             this.tabControl1.Controls.Add(this.tabPage1);
             this.tabControl1.Controls.Add(this.tabPage2);
-            this.tabControl1.Location = new System.Drawing.Point(12, 12);
+            this.tabControl1.Location = new System.Drawing.Point(12, 41);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
             this.tabControl1.Size = new System.Drawing.Size(1326, 705);
@@ -133,14 +134,6 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Gestion de camaras activas";
             // 
-            // flpGestionCamaras
-            // 
-            this.flpGestionCamaras.BackColor = System.Drawing.Color.Gray;
-            this.flpGestionCamaras.Location = new System.Drawing.Point(6, 22);
-            this.flpGestionCamaras.Name = "flpGestionCamaras";
-            this.flpGestionCamaras.Size = new System.Drawing.Size(1294, 549);
-            this.flpGestionCamaras.TabIndex = 0;
-            // 
             // btnGuardarCamarasActivas
             // 
             this.btnGuardarCamarasActivas.Location = new System.Drawing.Point(518, 599);
@@ -151,13 +144,32 @@
             this.btnGuardarCamarasActivas.UseVisualStyleBackColor = true;
             this.btnGuardarCamarasActivas.Click += new System.EventHandler(this.btnGuardarCamarasActivas_Click);
             // 
+            // flpGestionCamaras
+            // 
+            this.flpGestionCamaras.BackColor = System.Drawing.Color.Gray;
+            this.flpGestionCamaras.Location = new System.Drawing.Point(6, 22);
+            this.flpGestionCamaras.Name = "flpGestionCamaras";
+            this.flpGestionCamaras.Size = new System.Drawing.Size(1294, 549);
+            this.flpGestionCamaras.TabIndex = 0;
+            // 
+            // btnCerrarSesion
+            // 
+            this.btnCerrarSesion.Location = new System.Drawing.Point(1234, 12);
+            this.btnCerrarSesion.Name = "btnCerrarSesion";
+            this.btnCerrarSesion.Size = new System.Drawing.Size(94, 23);
+            this.btnCerrarSesion.TabIndex = 3;
+            this.btnCerrarSesion.Text = "Cerrar Sesion";
+            this.btnCerrarSesion.UseVisualStyleBackColor = true;
+            this.btnCerrarSesion.Click += new System.EventHandler(this.btnCerrarSesion_Click);
+            // 
             // Panel
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoScroll = true;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(1350, 729);
+            this.ClientSize = new System.Drawing.Size(1350, 759);
+            this.Controls.Add(this.btnCerrarSesion);
             this.Controls.Add(this.tabControl1);
             this.Name = "Panel";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
@@ -183,5 +195,6 @@
         private GroupBox groupBox1;
         private FlowLayoutPanel flpGestionCamaras;
         private Button btnGuardarCamarasActivas;
+        private Button btnCerrarSesion;
     }
 }

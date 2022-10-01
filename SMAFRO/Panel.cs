@@ -194,6 +194,17 @@ namespace SMAFRO
             availableCameras = new Dictionary<string, PictureBox>();
             clearPanels();
             LoadMainPanel();
+            Task.Delay(2);
+            MessageBox.Show("Cambios efectuados correctamente", "SMAFRO");
+        }
+
+        private void btnCerrarSesion_Click(object sender, EventArgs e)
+        {
+            availableCameras = new Dictionary<string, PictureBox>();
+            disbaledCamaras = new List<string>();
+            this.Hide();
+            Login login = new Login();
+            login.Show();
         }
     }
 }
