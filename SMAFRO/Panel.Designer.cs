@@ -31,14 +31,18 @@
             this.miniViewContainer = new System.Windows.Forms.GroupBox();
             this.flowLayoutPanel2 = new System.Windows.Forms.FlowLayoutPanel();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.mainVideoPanel = new System.Windows.Forms.FlowLayoutPanel();
+            this.flpCamaraPrincipal = new System.Windows.Forms.FlowLayoutPanel();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.flpGestionCamaras = new System.Windows.Forms.FlowLayoutPanel();
             this.miniViewContainer.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
+            this.tabPage2.SuspendLayout();
+            this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
             // miniViewContainer
@@ -66,7 +70,7 @@
             // 
             // groupBox2
             // 
-            this.groupBox2.Controls.Add(this.mainVideoPanel);
+            this.groupBox2.Controls.Add(this.flpCamaraPrincipal);
             this.groupBox2.Location = new System.Drawing.Point(6, 6);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Size = new System.Drawing.Size(1100, 665);
@@ -74,15 +78,15 @@
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Panel principal camaras";
             // 
-            // mainVideoPanel
+            // flpCamaraPrincipal
             // 
-            this.mainVideoPanel.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.mainVideoPanel.AutoScroll = true;
-            this.mainVideoPanel.BackColor = System.Drawing.Color.Gray;
-            this.mainVideoPanel.Location = new System.Drawing.Point(12, 22);
-            this.mainVideoPanel.Name = "mainVideoPanel";
-            this.mainVideoPanel.Size = new System.Drawing.Size(1082, 637);
-            this.mainVideoPanel.TabIndex = 1;
+            this.flpCamaraPrincipal.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.flpCamaraPrincipal.AutoScroll = true;
+            this.flpCamaraPrincipal.BackColor = System.Drawing.Color.Gray;
+            this.flpCamaraPrincipal.Location = new System.Drawing.Point(12, 22);
+            this.flpCamaraPrincipal.Name = "flpCamaraPrincipal";
+            this.flpCamaraPrincipal.Size = new System.Drawing.Size(1082, 637);
+            this.flpCamaraPrincipal.TabIndex = 1;
             // 
             // tabControl1
             // 
@@ -108,13 +112,32 @@
             // 
             // tabPage2
             // 
+            this.tabPage2.Controls.Add(this.groupBox1);
             this.tabPage2.Location = new System.Drawing.Point(4, 24);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(192, 72);
+            this.tabPage2.Size = new System.Drawing.Size(1318, 677);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "Gestion camaras activas";
             this.tabPage2.UseVisualStyleBackColor = true;
+            // 
+            // groupBox1
+            // 
+            this.groupBox1.Controls.Add(this.flpGestionCamaras);
+            this.groupBox1.Location = new System.Drawing.Point(6, 6);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(1306, 665);
+            this.groupBox1.TabIndex = 0;
+            this.groupBox1.TabStop = false;
+            this.groupBox1.Text = "Gestion de camaras activas";
+            // 
+            // flpGestionCamaras
+            // 
+            this.flpGestionCamaras.BackColor = System.Drawing.Color.Gray;
+            this.flpGestionCamaras.Location = new System.Drawing.Point(6, 22);
+            this.flpGestionCamaras.Name = "flpGestionCamaras";
+            this.flpGestionCamaras.Size = new System.Drawing.Size(1294, 637);
+            this.flpGestionCamaras.TabIndex = 0;
             // 
             // Panel
             // 
@@ -131,6 +154,8 @@
             this.groupBox2.ResumeLayout(false);
             this.tabControl1.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
+            this.tabPage2.ResumeLayout(false);
+            this.groupBox1.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -139,9 +164,11 @@
         private GroupBox miniViewContainer;
         private FlowLayoutPanel flowLayoutPanel2;
         private GroupBox groupBox2;
-        private FlowLayoutPanel mainVideoPanel;
+        private FlowLayoutPanel flpCamaraPrincipal;
         private TabControl tabControl1;
         private TabPage tabPage1;
         private TabPage tabPage2;
+        private GroupBox groupBox1;
+        private FlowLayoutPanel flpGestionCamaras;
     }
 }

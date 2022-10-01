@@ -1,11 +1,3 @@
-using Emgu.CV;
-using Emgu.CV.Structure;
-using DarknetYolo;
-using DarknetYolo.Models;
-using System.Diagnostics;
-using AForge.Video.DirectShow;
-using AForge.Video;
-using SMAFRO.Models;
 using SMAFRO.Controllers;
 
 namespace SMAFRO
@@ -56,7 +48,7 @@ namespace SMAFRO
             var cams = this.camDictionary.ToList().Select(cam => cam.Value).ToArray();
             cameraController.cameras.ToList().ForEach(camera =>
             camera.switchMode(true));
-            this.mainVideoPanel.Controls.AddRange(cams);
+            this.flpCamaraPrincipal.Controls.AddRange(cams);
             this.setCameraDimensions(2);
         }
 
@@ -66,14 +58,14 @@ namespace SMAFRO
             cameraController.cameras.Where(cam => cam.DeviceName != deviceName).ToList().ForEach(camera => 
             camera.switchMode(false));
             this.clearPanels();
-            this.mainVideoPanel.Controls.Add(pictureBox);
+            this.flpCamaraPrincipal.Controls.Add(pictureBox);
             addToMainView(new PictureBox[] { pictureBox});
             setCameraDimensions(1);
             addToMiniView(rest);
         }
 
         private void addToMainView(PictureBox[] cams) {
-            this.mainVideoPanel.Controls.AddRange(cams);
+            this.flpCamaraPrincipal.Controls.AddRange(cams);
         }
 
         private void addToMiniView(PictureBox[] cams) {
@@ -86,7 +78,7 @@ namespace SMAFRO
 
         public void clearPanels() {
             this.flowLayoutPanel2.Controls.Clear();
-            this.mainVideoPanel.Controls.Clear();
+            this.flpCamaraPrincipal.Controls.Clear();
         }
 
         private void updateFrame(string cameraId, Bitmap frame) {
@@ -108,15 +100,15 @@ namespace SMAFRO
                 AutoSize = true
             };
             picture.Controls.Add(title);
-            this.mainVideoPanel.Controls.Add(picture);
+            this.flpCamaraPrincipal.Controls.Add(picture);
             return picture;
         }
 
         private void setCameraDimensions(int camPerRow) {
-            foreach (var control in this.mainVideoPanel.Controls) {
+            foreach (var control in this.flpCamaraPrincipal.Controls) {
                 if (control is PictureBox) {
                     var pictureBox = control as PictureBox;
-                    pictureBox.Width = (this.mainVideoPanel.Width / camPerRow) - 10;
+                    pictureBox.Width = (this.flpCamaraPrincipal.Width / camPerRow) - 10;
                     pictureBox.Height = pictureBox.Width / 2;
                 }
             }
