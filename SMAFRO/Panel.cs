@@ -4,23 +4,26 @@ namespace SMAFRO
 {
     public partial class Panel : Form
     {
-        Dictionary<string, PictureBox> camDictionary = new Dictionary<string, PictureBox>();
+        //Dictionary<string, PictureBox> allCameras = new Dictionary<string, PictureBox>();
+        Dictionary<string, PictureBox> availableCameras = new Dictionary<string, PictureBox>();
         public string currentCamera = "";
         CameraController cameraController;
+
         public Panel()
         {
             InitializeComponent();
             cameraController = new CameraController();
             cameraController.OnNextFrame += new CameraController.NextFrameUpdateHandler((sender, e) => updateFrame(e.DeviceName, e.Frame));
-            cameraController.OnCameraAdded += new CameraController.CameraAddedHandler((sender, e) => test(e.DeviceName));
+            cameraController.OnCameraAdded += new CameraController.CameraAddedHandler((sender, e) => bindingControl(e.DeviceName));
             cameraController.loadSystemCameras();
-            setupCamClick();
+            bindingSwitchZoomEventToCamara();
             setCameraDimensions(4);
         }
-        public void setupCamClick() {
-            foreach (var entry in camDictionary) {
-                string cameraName = entry.Key;
-                PictureBox pictureBox = entry.Value;
+
+        public void bindingSwitchZoomEventToCamara() {
+            foreach (var camara in availableCameras) {
+                string cameraName = camara.Key;
+                PictureBox pictureBox = camara.Value;
                 pictureBox.DoubleClick += new EventHandler((s, e) => this.switchZoom(cameraName));
             }
         }
@@ -35,17 +38,17 @@ namespace SMAFRO
                 zoomIn(deviceName);
                 this.currentCamera = deviceName;
                 this.cameraController.switchCameraMode(this.currentCamera, true);
-            }
-            
+            }            
         }
 
-        public void test(string cameraId) {
+        public void bindingControl(string cameraId) {
             var control = AddCameraControl(cameraId);
-            camDictionary.Add(cameraId, control);
+            //allCameras.Add(cameraId, control);
+            availableCameras.Add(cameraId, control);
         }
         public void zoomOut() {
             this.clearPanels();
-            var cams = this.camDictionary.ToList().Select(cam => cam.Value).ToArray();
+            var cams = this.availableCameras.ToList().Select(cam => cam.Value).ToArray();
             cameraController.cameras.ToList().ForEach(camera =>
             camera.switchMode(true));
             this.flpCamaraPrincipal.Controls.AddRange(cams);
@@ -53,8 +56,8 @@ namespace SMAFRO
         }
 
         public void zoomIn(string deviceName) {
-            var pictureBox = camDictionary.GetValueOrDefault(deviceName);
-            var rest = camDictionary.ToList().Where(cam => cam.Value != pictureBox).Select(cam => cam.Value).ToArray();
+            var pictureBox = availableCameras.GetValueOrDefault(deviceName);
+            var rest = availableCameras.ToList().Where(cam => cam.Value != pictureBox).Select(cam => cam.Value).ToArray();
             cameraController.cameras.Where(cam => cam.DeviceName != deviceName).ToList().ForEach(camera => 
             camera.switchMode(false));
             this.clearPanels();
@@ -82,7 +85,7 @@ namespace SMAFRO
         }
 
         private void updateFrame(string cameraId, Bitmap frame) {
-            var pictureBox = camDictionary.GetValueOrDefault(cameraId);
+            var pictureBox = availableCameras.GetValueOrDefault(cameraId);
             pictureBox.Image = frame;
         }
 
@@ -99,8 +102,12 @@ namespace SMAFRO
                 Text = deviceName,
                 AutoSize = true
             };
+
             picture.Controls.Add(title);
+
+            this.flpGestionCamaras.Controls.Add(picture);
             this.flpCamaraPrincipal.Controls.Add(picture);
+            
             return picture;
         }
 

@@ -1,10 +1,5 @@
 ﻿using AForge.Video.DirectShow;
 using SMAFRO.Models;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace SMAFRO.Controllers
 {
@@ -30,7 +25,6 @@ namespace SMAFRO.Controllers
                 var args = new CameraAddedEventArgs(Device.Name);
                 OnCameraAdded(this, args);
                 loadCamera(cameraId, Device.Name);
-
             }
         }
 
