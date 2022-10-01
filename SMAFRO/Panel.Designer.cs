@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             this.miniViewContainer = new System.Windows.Forms.GroupBox();
-            this.flowLayoutPanel2 = new System.Windows.Forms.FlowLayoutPanel();
+            this.flpMiniVista = new System.Windows.Forms.FlowLayoutPanel();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.flpCamaraPrincipal = new System.Windows.Forms.FlowLayoutPanel();
             this.tabControl1 = new System.Windows.Forms.TabControl();
@@ -37,6 +37,7 @@
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.flpGestionCamaras = new System.Windows.Forms.FlowLayoutPanel();
+            this.btnGuardarCamarasActivas = new System.Windows.Forms.Button();
             this.miniViewContainer.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.tabControl1.SuspendLayout();
@@ -49,7 +50,7 @@
             // 
             this.miniViewContainer.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.miniViewContainer.Controls.Add(this.flowLayoutPanel2);
+            this.miniViewContainer.Controls.Add(this.flpMiniVista);
             this.miniViewContainer.Location = new System.Drawing.Point(1112, 6);
             this.miniViewContainer.Name = "miniViewContainer";
             this.miniViewContainer.Size = new System.Drawing.Size(217, 971);
@@ -57,16 +58,16 @@
             this.miniViewContainer.TabStop = false;
             this.miniViewContainer.Text = "Mini View";
             // 
-            // flowLayoutPanel2
+            // flpMiniVista
             // 
-            this.flowLayoutPanel2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.flpMiniVista.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.flowLayoutPanel2.AutoScroll = true;
-            this.flowLayoutPanel2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            this.flowLayoutPanel2.Location = new System.Drawing.Point(6, 22);
-            this.flowLayoutPanel2.Name = "flowLayoutPanel2";
-            this.flowLayoutPanel2.Size = new System.Drawing.Size(205, 943);
-            this.flowLayoutPanel2.TabIndex = 1;
+            this.flpMiniVista.AutoScroll = true;
+            this.flpMiniVista.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.flpMiniVista.Location = new System.Drawing.Point(6, 22);
+            this.flpMiniVista.Name = "flpMiniVista";
+            this.flpMiniVista.Size = new System.Drawing.Size(205, 943);
+            this.flpMiniVista.TabIndex = 1;
             // 
             // groupBox2
             // 
@@ -123,6 +124,7 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.btnGuardarCamarasActivas);
             this.groupBox1.Controls.Add(this.flpGestionCamaras);
             this.groupBox1.Location = new System.Drawing.Point(6, 6);
             this.groupBox1.Name = "groupBox1";
@@ -136,8 +138,18 @@
             this.flpGestionCamaras.BackColor = System.Drawing.Color.Gray;
             this.flpGestionCamaras.Location = new System.Drawing.Point(6, 22);
             this.flpGestionCamaras.Name = "flpGestionCamaras";
-            this.flpGestionCamaras.Size = new System.Drawing.Size(1294, 637);
+            this.flpGestionCamaras.Size = new System.Drawing.Size(1294, 549);
             this.flpGestionCamaras.TabIndex = 0;
+            // 
+            // btnGuardarCamarasActivas
+            // 
+            this.btnGuardarCamarasActivas.Location = new System.Drawing.Point(518, 599);
+            this.btnGuardarCamarasActivas.Name = "btnGuardarCamarasActivas";
+            this.btnGuardarCamarasActivas.Size = new System.Drawing.Size(177, 23);
+            this.btnGuardarCamarasActivas.TabIndex = 1;
+            this.btnGuardarCamarasActivas.Text = "Guardar Configuracion";
+            this.btnGuardarCamarasActivas.UseVisualStyleBackColor = true;
+            this.btnGuardarCamarasActivas.Click += new System.EventHandler(this.btnGuardarCamarasActivas_Click);
             // 
             // Panel
             // 
@@ -162,7 +174,7 @@
 
         #endregion
         private GroupBox miniViewContainer;
-        private FlowLayoutPanel flowLayoutPanel2;
+        private FlowLayoutPanel flpMiniVista;
         private GroupBox groupBox2;
         private FlowLayoutPanel flpCamaraPrincipal;
         private TabControl tabControl1;
@@ -170,5 +182,6 @@
         private TabPage tabPage2;
         private GroupBox groupBox1;
         private FlowLayoutPanel flpGestionCamaras;
+        private Button btnGuardarCamarasActivas;
     }
 }

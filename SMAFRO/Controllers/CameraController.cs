@@ -12,19 +12,21 @@ namespace SMAFRO.Controllers
         public delegate void CameraAddedHandler(object sender, CameraAddedEventArgs e);
 
         public event CameraAddedHandler OnCameraAdded;
-        public CameraController() { 
         
-        }
+        public CameraController() { }
 
-        public void loadSystemCameras() {
+        public void loadSystemCameras(List<string> disbaledCamaras) {
             var filterInfoCollection = new FilterInfoCollection(FilterCategory.VideoInputDevice);
             for (var i = 0; i < filterInfoCollection.Count; i++)
             {
-                FilterInfo Device = filterInfoCollection[i];
-                string cameraId = filterInfoCollection[i].MonikerString;
-                var args = new CameraAddedEventArgs(Device.Name);
-                OnCameraAdded(this, args);
-                loadCamera(cameraId, Device.Name);
+                if (!disbaledCamaras.Contains(filterInfoCollection[i].Name))
+                {
+                    FilterInfo Device = filterInfoCollection[i];
+                    string cameraId = filterInfoCollection[i].MonikerString;
+                    var args = new CameraAddedEventArgs(Device.Name);
+                    OnCameraAdded(this, args);
+                    loadCamera(cameraId, Device.Name);
+                }                
             }
         }
 
