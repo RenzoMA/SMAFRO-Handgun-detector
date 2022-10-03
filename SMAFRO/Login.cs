@@ -114,7 +114,8 @@ namespace SMAFRO
 
             this.Hide();
             Panel panel = new Panel();
-            panel.Show();
+            panel.ShowDialog();
+            this.Close();
         }
 
         async void performCodeExchange(string code, string code_verifier, string redirectURI)
