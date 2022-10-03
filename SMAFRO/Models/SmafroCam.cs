@@ -1,16 +1,7 @@
 ﻿using AForge.Video;
 using AForge.Video.DirectShow;
-using DarknetYolo;
-using DarknetYolo.Models;
-using Emgu.CV;
 using Emgu.CV.Structure;
 using SMAFRO.Detector;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using static System.Windows.Forms.Control;
 
 namespace SMAFRO.Models
 {
@@ -85,7 +76,7 @@ namespace SMAFRO.Models
         }
 
         public void stopCamera() {
-            this.VideoCaptureDevice.Stop();
+            this.VideoCaptureDevice.SignalToStop();
         }
     }
 }

@@ -193,6 +193,7 @@ namespace SMAFRO
 
             availableCameras = new Dictionary<string, PictureBox>();
             clearPanels();
+            cameraController.StopAllCamaras();
             LoadMainPanel();
             Task.Delay(2);
             MessageBox.Show("Cambios efectuados correctamente", "SMAFRO");

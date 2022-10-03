@@ -57,5 +57,13 @@ namespace SMAFRO.Controllers
             NextFrameEventArgs args = new NextFrameEventArgs(deviceId, frame);
             OnNextFrame(this, args);
         }
+
+        public void StopAllCamaras()
+        {
+            foreach (var camera in cameras)
+            {
+                camera.stopCamera();
+            }
+        }
     }
 }
