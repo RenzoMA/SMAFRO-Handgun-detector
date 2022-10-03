@@ -174,6 +174,7 @@
             this.Name = "Panel";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "SMAFRO";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Panel_FormClosing);
             this.miniViewContainer.ResumeLayout(false);
             this.groupBox2.ResumeLayout(false);
             this.tabControl1.ResumeLayout(false);

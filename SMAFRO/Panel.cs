@@ -201,11 +201,17 @@ namespace SMAFRO
 
         private void btnCerrarSesion_Click(object sender, EventArgs e)
         {
+            cameraController.StopAllCamaras();
             availableCameras = new Dictionary<string, PictureBox>();
             disbaledCamaras = new List<string>();
             this.Hide();
             Login login = new Login();
             login.Show();
+        }
+
+        private void Panel_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            cameraController.StopAllCamaras();
         }
     }
 }
